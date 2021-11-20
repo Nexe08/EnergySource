@@ -2,8 +2,10 @@ extends RigidBody2D
 # Character
 
 
-onready var Velocity = get_linear_velocity()
+var entity
 
 
-func _integrate_forces(state: Physics2DDirectBodyState) -> void:
-    pass
+func _physics_process(delta: float) -> void:
+    if entity:
+        if entity.has_method("_update"):
+            entity._update(delta)
