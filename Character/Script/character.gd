@@ -2,10 +2,11 @@ extends RigidBody2D
 # Character
 
 
-var entity
+onready var entity_components = get_children()
+onready var parent = get_parent()
 
 
 func _physics_process(delta: float) -> void:
-    if entity:
-        if entity.has_method("_update"):
-            entity._update(delta)
+    for component in entity_components:
+        if component.has_method("_update"):
+            component._update(delta)
