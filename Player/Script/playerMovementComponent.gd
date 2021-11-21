@@ -2,7 +2,7 @@ extends Node2D
 # Player Movement Component
 
 export (NodePath) var root_parent = ".."
-export (float) var speed = 60
+export (float) var speed = 120
 export (float) var acceleration = .27
 
 onready var parent = get_node(root_parent)
