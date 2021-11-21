@@ -1,6 +1,7 @@
 extends Node2D
 # player attack component
 
+export (NodePath) var player_sprite
 export var fire_rate: float = 0.2
 
 var can_fire: bool = true
@@ -8,6 +9,7 @@ var can_fire: bool = true
 var fire_rate_timer: Timer
 
 onready var parent = get_parent()
+onready var sprite = get_node(player_sprite)
 onready var muzzel = $MuzzelPosition
 
 
@@ -20,6 +22,8 @@ func _ready() -> void:
 
 
 func _update(_delta: float) -> void:
+    sprite.scale = lerp(sprite.scale, Vector2(1, 1), 0.3) # reset
+    
     parent.look_at(get_global_mouse_position())
     
     if Input.is_action_pressed("lmb"):
@@ -35,6 +39,7 @@ func _shoot():
         parent.parent.add_child(bullet_instance)
         fire_rate_timer.stop()
         fire_rate_timer.start()
+        sprite.scale = Vector2(1.5, 1.5)
         can_fire = false
 
 

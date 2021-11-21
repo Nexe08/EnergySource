@@ -10,6 +10,8 @@ radius = 4.00002
 height = 5.99996
 
 [node name="Player" instance=ExtResource( 1 )]
+collision_layer = 2
+collision_mask = 0
 gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
@@ -24,6 +26,7 @@ script = ExtResource( 2 )
 
 [node name="PlayerAttackComponent" type="Node2D" parent="." index="3"]
 script = ExtResource( 4 )
+player_sprite = NodePath("../Sprite")
 
 [node name="MuzzelPosition" type="Position2D" parent="PlayerAttackComponent" index="0"]
 position = Vector2( 8, 0 )
