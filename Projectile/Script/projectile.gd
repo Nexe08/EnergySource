@@ -12,3 +12,8 @@ func shoot(bullet_rotation):
 
 func _on_VisibilityNotifier2D_screen_exited() -> void:
     queue_free()
+
+
+func _on_Projectile_body_entered(_body: Node) -> void:
+    sleeping = true
+    $AnimationPlayer.play("death")
