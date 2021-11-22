@@ -1,6 +1,11 @@
 extends Node
 # global
 
+# warning-ignore:unused_signal
+# emmited by object that can effect energy level
+# connected in prgress bar that show energy (energy bar component)
+signal energy_level_changed(value)
+
 var current_camera
 var main
 var player
