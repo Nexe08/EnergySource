@@ -1,14 +1,17 @@
 extends Node2D
 # Player Movement Component
 
-export (NodePath) var root_parent = ".."
 export (float) var speed = 120
 export (float) var acceleration = .27
 
-onready var parent = get_node(root_parent)
+onready var parent = get_parent()
 
 
 var direction := Vector2.ZERO
+
+
+func _ready() -> void:
+    global.player = parent
 
 
 func _update(_delta: float) -> void:

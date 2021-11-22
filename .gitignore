@@ -1,6 +1,7 @@
 
 # Godot-specific ignores
 addons/
+save/
 .shh/
 ssh_key
 ssh_key.pub
