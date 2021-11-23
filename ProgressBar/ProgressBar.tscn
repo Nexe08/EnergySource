@@ -46,4 +46,4 @@ __meta__ = {
 wait_time = 0.5
 one_shot = true
 
-[connection signal="value_changed" from="." to="." method="_on_HelthBar_value_changed"]
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]

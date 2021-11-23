@@ -14,7 +14,7 @@ func _ready() -> void:
         visible = true
 
 
-func _on_HelthBar_value_changed(value: float) -> void:
+func _on_value_changed(value: float) -> void:
     if not always_visible:
         visible = true
         visible_timer.stop()

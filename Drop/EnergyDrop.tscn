@@ -1,0 +1,124 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Drop/Drop.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Drop/texture/energy_drop.png" type="Texture" id=2]
+[ext_resource path="res://Drop/script/energy_drop_component.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.767123, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Animation" id=4]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EnergyDropComponent/DeathPartical:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "default"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="EnergyDrop" instance=ExtResource( 1 )]
+collision_layer = 32
+monitoring = false
+
+[node name="CollisionShape2D" parent="." index="0"]
+visible = false
+rotation = 0.0
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+visible = false
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 2 )
+
+[node name="EnergyDropComponent" type="Node2D" parent="." index="2"]
+script = ExtResource( 3 )
+
+[node name="DeathPartical" type="CPUParticles2D" parent="EnergyDropComponent" index="0"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+emission_shape = 2
+emission_rect_extents = Vector2( 4, 4 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 71.65
+initial_velocity_random = 0.57
+angular_velocity = 214.05
+angular_velocity_random = 0.19
+damping = 100.0
+angle = 389.2
+angle_random = 0.23
+scale_amount = 2.0
+scale_amount_random = 0.38
+scale_amount_curve = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EnergyDropComponent" index="1"]
+root_node = NodePath("../..")
+autoplay = "default"
+anims/death = SubResource( 4 )
+anims/default = SubResource( 2 )
