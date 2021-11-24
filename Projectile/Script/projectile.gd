@@ -14,6 +14,9 @@ func _on_VisibilityNotifier2D_screen_exited() -> void:
     queue_free()
 
 
-func _on_Projectile_body_entered(_body: Node) -> void:
+func _on_Projectile_body_entered(body: Node) -> void:
+    if body.has_method("take_damage"):
+        body.take_damage(damage, global_position)
+    
     sleeping = true
     $AnimationPlayer.play("death")

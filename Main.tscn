@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main.gd" type="Script" id=2]
 [ext_resource path="res://Core/Core.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Camera/Camera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ProgressBar/EnergyBarComponent.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemy/SlowMover.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 100 )
@@ -76,3 +77,7 @@ position = Vector2( 170, 100 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 85, 63 )
+collision_mask = 1
+
+[node name="SlowMover" parent="." instance=ExtResource( 6 )]
+position = Vector2( 221, 148 )

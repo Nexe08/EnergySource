@@ -1,0 +1,115 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Character/Character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemy/enemy_texturet.png" type="Texture" id=2]
+[ext_resource path="res://Enemy/script/slow_mover_component.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 5.00001
+height = 3.99999
+
+[sub_resource type="Animation" id=2]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Death Partical:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Death Partical:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="SlowMover" instance=ExtResource( 1 )]
+collision_layer = 8
+mode = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+rotation = 1.57079
+shape = SubResource( 1 )
+
+[node name="SlowMoverComponent" type="Node2D" parent="." index="1"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="SlowMoverComponent" index="0"]
+texture = ExtResource( 2 )
+
+[node name="Death Partical" type="CPUParticles2D" parent="SlowMoverComponent" index="1"]
+emitting = false
+amount = 21
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 40.54
+initial_velocity_random = 0.57
+angular_velocity = 38.92
+damping = 40.54
+angle = 272.4
+angle_random = 0.3
+scale_amount = 2.0
+scale_amount_random = 0.61
+color = Color( 1, 0.117647, 0, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SlowMoverComponent" index="2"]
+autoplay = "idle"
+anims/death = SubResource( 2 )
+anims/idle = SubResource( 3 )
