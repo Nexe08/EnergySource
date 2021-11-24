@@ -6,6 +6,8 @@ export var life: float = 2
 export var speed: float = 30
 export var damage: float = 1
 
+var can_attack: bool = false
+
 onready var parent = get_parent()
 onready var target = global.player
 
@@ -21,6 +23,10 @@ func _ready() -> void:
 func _update(_delta:float) -> void:
     sprite.scale = lerp(sprite.scale, Vector2(1, 1), .27)
     _handel_target_following_logic()
+    
+    if can_attack:
+        target.take_damage(damage, parent.global_position)
+        can_attack = false
 
 
 func _handel_target_following_logic():
@@ -32,6 +38,7 @@ func _handel_target_following_logic():
 # if target is in attack range
 func _on_AttackArea_body_entered(body: Node) -> void:
     if body == target:
+        can_attack = true
         damage_cooldown_timer.stop()
         damage_cooldown_timer.start()
 
@@ -39,20 +46,21 @@ func _on_AttackArea_body_entered(body: Node) -> void:
 # if target isn't in attack range
 func _on_AttackArea_body_exited(body: Node) -> void:
     if body == target:
+        can_attack = false
         damage_cooldown_timer.stop()
 
 
 func _on_DamageCooldownTimer_timeout() -> void:
     damage_cooldown_timer.stop()
     damage_cooldown_timer.start()
-    target.take_damage(damage, parent.global_position)
+    can_attack = true
 
 
 # called in character class
 func take_damage(takken_damage: float, _damage_direction: Vector2 = Vector2.ZERO):
     if life > 0:
         life -= takken_damage
-        sprite.scale = Vector2(1.5, 1.5)
+        sprite.scale = Vector2(1.9, 1.9)
     else:
         parent.sleeping = true
         anim.play("death")

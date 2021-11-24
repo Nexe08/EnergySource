@@ -14,8 +14,9 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-    energy_bar.rect_scale = lerp(energy_bar.rect_scale, Vector2(1, 1), .5)
-    energy_bar.modulate = energy_bar.modulate.linear_interpolate(Color.white, .2)
+    energy_bar.rect_scale = lerp(energy_bar.rect_scale, Vector2(1, 1), .37)
+    energy_bar.rect_rotation = lerp(energy_bar.rect_rotation, 0, .37)
+    energy_bar.modulate = energy_bar.modulate.linear_interpolate(Color.white, .37)
 
 
 # signal connection
@@ -23,8 +24,10 @@ func _change_energy_level(value):
     current_energy_level += value
     
     if value < 0:
+        energy_bar.rect_scale = Vector2(1.05, 1.1)
+        energy_bar.rect_rotation = rand_range(-15, 15)
         energy_bar.modulate = "#ff0000"
     else:
         energy_bar.modulate = "#15eacb"
-    energy_bar.rect_scale = Vector2(1.05, 1.1)
+    
     energy_bar.emit_signal("value_changed", current_energy_level)

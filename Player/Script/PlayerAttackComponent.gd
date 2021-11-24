@@ -39,7 +39,7 @@ func _shoot():
         parent.parent.add_child(bullet_instance)
         fire_rate_timer.stop()
         fire_rate_timer.start()
-        sprite.scale = Vector2(1.5, 1.5) # visual
+        sprite.scale = Vector2(.2, .2) #Vector2(1.5, 1.5) # visual
         global.emit_signal("energy_level_changed", -1) # energy level was consumed
         can_fire = false
 
