@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Projectile/Script/projectile.gd" type="Script" id=1]
+[ext_resource path="res://SXManager/SFXManager.tscn" type="PackedScene" id=2]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.582192, 0.972336 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -46,7 +47,6 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "death"
-length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath("DeathPartical:emitting")
 tracks/0/interp = 1
@@ -66,7 +66,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.7 ),
+"times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -92,6 +92,18 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ExplositionSFX:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -173,6 +185,11 @@ autoplay = "reset"
 anims/RESET = SubResource( 3 )
 anims/death = SubResource( 2 )
 anims/reset = SubResource( 4 )
+
+[node name="ShootSFX" parent="." instance=ExtResource( 2 )]
+autoplay = true
+
+[node name="ExplositionSFX" parent="." instance=ExtResource( 2 )]
 
 [connection signal="body_entered" from="." to="." method="_on_Projectile_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
