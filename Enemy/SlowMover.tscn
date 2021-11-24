@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemy/enemy_texturet.png" type="Texture" id=2]
@@ -77,6 +77,8 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="CircleShape2D" id=4]
+
 [node name="SlowMover" instance=ExtResource( 1 )]
 collision_layer = 8
 mode = 2
@@ -113,3 +115,19 @@ color = Color( 1, 0.117647, 0, 1 )
 autoplay = "idle"
 anims/death = SubResource( 2 )
 anims/idle = SubResource( 3 )
+
+[node name="AttackArea" type="Area2D" parent="SlowMoverComponent" index="3"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlowMoverComponent/AttackArea" index="0"]
+shape = SubResource( 4 )
+
+[node name="DamageCooldownTimer" type="Timer" parent="SlowMoverComponent/AttackArea" index="1"]
+wait_time = 0.67
+one_shot = true
+
+[connection signal="body_entered" from="SlowMoverComponent/AttackArea" to="SlowMoverComponent" method="_on_AttackArea_body_entered"]
+[connection signal="body_exited" from="SlowMoverComponent/AttackArea" to="SlowMoverComponent" method="_on_AttackArea_body_exited"]
+[connection signal="timeout" from="SlowMoverComponent/AttackArea/DamageCooldownTimer" to="SlowMoverComponent" method="_on_DamageCooldownTimer_timeout"]
