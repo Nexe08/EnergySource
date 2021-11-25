@@ -5,7 +5,7 @@
 [ext_resource path="res://Core/Core.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Camera/Camera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ProgressBar/EnergyBarComponent.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Enemy/Chaser.tscn" type="PackedScene" id=6]
+[ext_resource path="res://SpawnPointGenerator/SpawnPointGenerator.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 100 )
@@ -70,6 +70,11 @@ collision_mask = 0
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="background/BoundingBox/down"]
 shape = SubResource( 4 )
 
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="SpawnPointGenerator" parent="." instance=ExtResource( 6 )]
+
 [node name="EnergyBarComponent" parent="." instance=ExtResource( 5 )]
 
 [node name="Core" parent="." instance=ExtResource( 3 )]
@@ -79,5 +84,4 @@ position = Vector2( 170, 100 )
 position = Vector2( 85, 63 )
 collision_mask = 1
 
-[node name="Chaser" parent="." instance=ExtResource( 6 )]
-position = Vector2( 200, 128 )
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]

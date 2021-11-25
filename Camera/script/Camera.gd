@@ -6,7 +6,6 @@ var screen_shake_duration: float = 0
 
 
 func _ready() -> void:
-    randomize()
     global.current_camera = self
 
 
