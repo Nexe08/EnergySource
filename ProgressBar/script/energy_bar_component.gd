@@ -25,9 +25,6 @@ func _change_energy_level(value):
     
     if value < 0:
         energy_bar.rect_scale = Vector2(1.05, 1.1)
-        energy_bar.rect_rotation = rand_range(-15, 15)
-        energy_bar.modulate = "#ff0000"
-    else:
-        energy_bar.modulate = "#15eacb"
+        energy_bar.rect_rotation = rand_range(-8, 8)
     
     energy_bar.update_value(current_energy_level)
