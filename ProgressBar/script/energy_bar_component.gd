@@ -30,4 +30,4 @@ func _change_energy_level(value):
     else:
         energy_bar.modulate = "#15eacb"
     
-    energy_bar.emit_signal("value_changed", current_energy_level)
+    energy_bar.update_value(current_energy_level)

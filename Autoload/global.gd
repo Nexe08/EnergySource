@@ -2,8 +2,7 @@ extends Node
 # global
 
 # warning-ignore:unused_signal
-# emmited by object that can effect energy level
-# connected in prgress bar that show energy (energy bar component)
+# to change energy level and update ui we have to emmit this signal
 signal energy_level_changed(value)
 
 var current_camera
