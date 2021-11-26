@@ -22,6 +22,13 @@ func _process(_delta: float) -> void:
 # signal connection
 func _change_energy_level(value):
     current_energy_level += value
+    current_energy_level = clamp(current_energy_level, 0, max_energy_level)
+    
+    if current_energy_level < max_energy_level:
+        global.emit_signal("can_pickup_energy_drop", true)
+        
+    else:
+        global.emit_signal("can_pickup_energy_drop", false)
     
     if value < 0:
         energy_bar.rect_scale = Vector2(1.05, 1.1)

@@ -19,3 +19,10 @@ func take_damage(takken_damage: float, damage_direction: Vector2 = Vector2.ZERO)
         if is_instance_valid(component):
             if component.has_method("take_damage"):
                 component.take_damage(takken_damage, damage_direction)
+
+
+# callled by enemy component
+func spawn_energy_drop():
+    var drop_instance = global.energy_drop_path.instance()
+    drop_instance.global_position = global_position
+    global.main.add_child(drop_instance)
