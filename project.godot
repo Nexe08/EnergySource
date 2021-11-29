@@ -106,6 +106,7 @@ rmb={
 2d_physics/layer_4="enemy"
 2d_physics/layer_5="enemy bullet"
 2d_physics/layer_6="drop"
+2d_physics/layer_7="core"
 
 [physics]
 
@@ -117,3 +118,4 @@ quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"
+quality/dynamic_fonts/use_oversampling=false

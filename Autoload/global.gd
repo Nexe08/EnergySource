@@ -32,3 +32,7 @@ var chaser_path: PackedScene = preload("res://Enemy/Chaser.tscn")
 
 func _ready() -> void:
     randomize()
+
+func back_to_mainmenu(current_node):
+    TransitionManager.emit_signal("remove_object", current_node)
+    TransitionManager.emit_signal("start", main_menu_path, main)

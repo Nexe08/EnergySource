@@ -25,7 +25,8 @@ func _start_transition() -> void:
         desire_parent.add_child(node_instance)
     
     if old_object != null:
-        old_object.queue_free()
+        if is_instance_valid(old_object):
+            old_object.queue_free()
 
 
 # signal connection
