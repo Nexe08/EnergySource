@@ -25,4 +25,4 @@ func take_damage(takken_damage: float, damage_direction: Vector2 = Vector2.ZERO)
 func spawn_energy_drop():
     var drop_instance = global.energy_drop_path.instance()
     drop_instance.global_position = global_position
-    global.main.add_child(drop_instance)
+    global.game.add_child(drop_instance)

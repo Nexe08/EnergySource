@@ -1,0 +1,159 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Button/Button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://MainMenu/script/main_menu.gd" type="Script" id=2]
+[ext_resource path="res://MainMenu/icon_texture/icon_texture.png" type="Texture" id=3]
+[ext_resource path="res://MainMenu/icon_texture/icon_LMB_texture.png" type="Texture" id=4]
+[ext_resource path="res://MainMenu/icon_texture/icon_exit_texture.png" type="Texture" id=5]
+[ext_resource path="res://MainMenu/icon_texture/icon_play_texture.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "RESET"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("MoveGuide:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 3.0, -3.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "RESET"
+length = 1.653
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 3.0, -3.0 ]
+}
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 341, 200 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HB" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftMargin" type="Label" parent="HB"]
+margin_top = 93.0
+margin_right = 16.0
+margin_bottom = 107.0
+text = "    "
+
+[node name="Buttons" type="VBoxContainer" parent="HB"]
+margin_left = 20.0
+margin_right = 36.0
+margin_bottom = 200.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Play" parent="HB/Buttons" instance=ExtResource( 1 )]
+texture_normal = ExtResource( 6 )
+
+[node name="Exit" parent="HB/Buttons" instance=ExtResource( 1 )]
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+
+[node name="MiddleMargin" type="Label" parent="HB"]
+margin_left = 40.0
+margin_top = 93.0
+margin_right = 56.0
+margin_bottom = 107.0
+text = "    "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HB"]
+margin_left = 60.0
+margin_right = 321.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="HB/VBoxContainer"]
+margin_right = 261.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MoveGuide" type="TextureRect" parent="HB/VBoxContainer/Control"]
+margin_left = 29.0
+margin_top = 19.0
+margin_right = 239.0
+margin_bottom = 67.0
+rect_rotation = 3.0
+rect_pivot_offset = Vector2( 105, 24 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HB/VBoxContainer/Control/MoveGuide"]
+margin_left = 59.0
+margin_top = 18.0
+margin_right = 99.0
+margin_bottom = 32.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Use Arrow key to move"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HB/VBoxContainer/Control/MoveGuide"]
+root_node = NodePath("../..")
+autoplay = "RESET"
+anims/RESET = SubResource( 1 )
+
+[node name="ShootingGuide" type="TextureRect" parent="HB/VBoxContainer/Control"]
+margin_left = 41.0
+margin_top = 82.0
+margin_right = 218.0
+margin_bottom = 138.0
+rect_rotation = 0.609562
+rect_pivot_offset = Vector2( 88, 28 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HB/VBoxContainer/Control/ShootingGuide"]
+margin_left = 37.0
+margin_right = 113.0
+margin_bottom = 17.0
+text = "Use left mouse button
+   		       	  to shoot"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HB/VBoxContainer/Control/ShootingGuide"]
+autoplay = "RESET"
+anims/RESET = SubResource( 2 )
+
+[node name="EndMargin" type="Label" parent="HB"]
+margin_left = 325.0
+margin_top = 93.0
+margin_right = 341.0
+margin_bottom = 107.0
+text = "    "
+
+[connection signal="pressed" from="HB/Buttons/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="HB/Buttons/Exit" to="." method="_on_Exit_pressed"]

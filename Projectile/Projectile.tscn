@@ -176,9 +176,10 @@ angular_velocity = 151.4
 angular_velocity_random = 0.2
 angle = 50.7
 angle_random = 0.66
-scale_amount = 4.44
+scale_amount = 2.5
 scale_amount_random = 0.22
 scale_amount_curve = SubResource( 1 )
+color = Color( 0, 0.235294, 1, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "reset"

@@ -35,6 +35,14 @@ func _handel_target_following_logic():
     parent.look_at(target.global_position)
 
 
+# called in animation player
+func _spawn_dead_body() -> void:
+    var instance = global.dead_enemy_rotten_path.instance()
+    instance.global_position.x = rand_range(parent.global_position.x - 20, parent.global_position.x + 20)
+    instance.global_position.y = rand_range(parent.global_position.y - 20, parent.global_position.y + 20)
+    global.game.add_child(instance)
+
+
 # if target is in attack range
 func _on_AttackArea_body_entered(body: Node) -> void:
     if body == target:
