@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Button/Button.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MainMenu/script/main_menu.gd" type="Script" id=2]
@@ -6,6 +6,11 @@
 [ext_resource path="res://MainMenu/icon_texture/icon_LMB_texture.png" type="Texture" id=4]
 [ext_resource path="res://MainMenu/icon_texture/icon_exit_texture.png" type="Texture" id=5]
 [ext_resource path="res://MainMenu/icon_texture/icon_play_texture.png" type="Texture" id=6]
+[ext_resource path="res://Font/Kenney Pixel Square.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 7 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "RESET"
@@ -114,9 +119,10 @@ margin_left = 45.5575
 margin_top = 17.1015
 margin_right = 194.557
 margin_bottom = 31.1015
-rect_scale = Vector2( 1.2, 1.2 )
+rect_scale = Vector2( 0.4, 0.4 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Use Arrow key to move"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HB/VBoxContainer/Control/MoveGuide"]
@@ -140,9 +146,10 @@ __meta__ = {
 margin_left = 37.0
 margin_right = 113.0
 margin_bottom = 17.0
-rect_scale = Vector2( 1.2, 1.2 )
+rect_scale = Vector2( 0.4, 0.4 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Use left mouse button
    		       	  to shoot"
 __meta__ = {
