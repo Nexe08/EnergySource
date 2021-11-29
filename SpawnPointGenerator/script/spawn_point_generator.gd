@@ -17,10 +17,9 @@ func _process(_delta: float) -> void:
 
 # called in animation player
 func _spawn():
-    
     var enemy_instance = global.chaser_path.instance()
     enemy_instance.global_position = spawn_positon
-    global.main.add_child(enemy_instance)
+    global.game.add_child(enemy_instance)
 
 
 func set_spawn_point():

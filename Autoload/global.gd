@@ -1,4 +1,5 @@
 extends Node
+# AUTOLOAD
 # global
 
 # warning-ignore:unused_signal
@@ -12,10 +13,14 @@ signal can_pickup_energy_drop(value)
 
 var core
 var current_camera
+var game
 var main
 var player
 
+var dead_enemy_rotten_path: PackedScene = preload("res://Enemy/DeadEnemyRotten.tscn")
 var energy_drop_path: PackedScene = preload("res://Drop/EnergyDrop.tscn")
+var game_scene_path: PackedScene = preload("res://Game/game.tscn")
+var main_menu_path: PackedScene = preload("res://MainMenu/MainMenu.tscn")
 var player_bullet_path: PackedScene = preload("res://Projectile/PlayerBullet.tscn")
 
 func screen_shake(i, d):
