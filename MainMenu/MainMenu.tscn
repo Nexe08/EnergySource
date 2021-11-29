@@ -98,10 +98,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MoveGuide" type="TextureRect" parent="HB/VBoxContainer/Control"]
-margin_left = 29.0
-margin_top = 19.0
-margin_right = 239.0
-margin_bottom = 67.0
+margin_left = 16.0
+margin_top = 18.0
+margin_right = 226.0
+margin_bottom = 66.0
 rect_rotation = 3.0
 rect_pivot_offset = Vector2( 105, 24 )
 texture = ExtResource( 3 )
@@ -110,11 +110,13 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="HB/VBoxContainer/Control/MoveGuide"]
-margin_left = 59.0
-margin_top = 18.0
-margin_right = 99.0
-margin_bottom = 32.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
+margin_left = 45.5575
+margin_top = 17.1015
+margin_right = 194.557
+margin_bottom = 31.1015
+rect_scale = Vector2( 1.2, 1.2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 text = "Use Arrow key to move"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HB/VBoxContainer/Control/MoveGuide"]
@@ -123,10 +125,10 @@ autoplay = "RESET"
 anims/RESET = SubResource( 1 )
 
 [node name="ShootingGuide" type="TextureRect" parent="HB/VBoxContainer/Control"]
-margin_left = 41.0
-margin_top = 82.0
-margin_right = 218.0
-margin_bottom = 138.0
+margin_left = 34.0
+margin_top = 81.0
+margin_right = 211.0
+margin_bottom = 137.0
 rect_rotation = 0.609562
 rect_pivot_offset = Vector2( 88, 28 )
 texture = ExtResource( 4 )
@@ -138,6 +140,9 @@ __meta__ = {
 margin_left = 37.0
 margin_right = 113.0
 margin_bottom = 17.0
+rect_scale = Vector2( 1.2, 1.2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 text = "Use left mouse button
    		       	  to shoot"
 __meta__ = {

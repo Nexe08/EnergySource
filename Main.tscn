@@ -1,7 +1,38 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://MainMenu/MainMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:points")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ PoolVector2Array( 0, 200, -5, 172, 2, 150, -2, 119, -1, 88, -4, 63, 2, 36, -1, 17, 2, 1, 39, -2, 79, 4, 111, -2, 163, 3, 210, -2, 257, 3, 298, -4, 321, 3, 341, 1, 341, 21, 342, 39, 343, 63, 341, 87, 342, 115, 339, 140, 343, 163, 339, 187, 343, 199, 318, 202, 286, 199, 261, 203, 234, 202, 196, 202, 165, 199, 131, 203, 100, 199, 62, 202, 42, 199, 18, 201, 0, 200 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "default"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:points")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ PoolVector2Array( 0, 200, 3, 172, -3, 150, 3, 121, -4, 86, 2, 61, -3, 34, 1, 17, 0, 0, 39, 5, 71, -1, 112, 4, 154, -1, 205, 3, 249, -3, 298, 2, 320, -2, 338, 3, 335, 22, 340, 43, 336, 68, 340, 90, 338, 116, 341, 138, 338, 168, 344, 190, 337, 201, 317, 198, 288, 203, 260, 199, 239, 205, 197, 199, 167, 204, 137, 199, 107, 203, 69, 199, 44, 204, 18, 197, 0, 200 ), PoolVector2Array( 0, 200, -5, 172, 2, 150, -2, 119, -1, 88, -4, 63, 2, 36, -1, 17, 2, 1, 39, -2, 79, 4, 111, -2, 163, 3, 210, -2, 257, 3, 298, -4, 321, 3, 341, 1, 341, 21, 342, 39, 343, 63, 341, 87, 342, 115, 339, 140, 343, 163, 339, 187, 343, 199, 318, 202, 286, 199, 261, 203, 234, 202, 196, 202, 165, 199, 131, 203, 100, 199, 62, 202, 42, 199, 18, 201, 0, 200 ) ]
+}
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 100 )
@@ -27,37 +58,42 @@ __meta__ = {
 }
 
 [node name="Line2D" type="Line2D" parent="background"]
-points = PoolVector2Array( 0, 200, 0, 0, 341, 0, 341, 200, 0, 200 )
+points = PoolVector2Array( 0, 200, -5, 172, 2, 150, -2, 119, -1, 88, -4, 63, 2, 36, -1, 17, 2, 1, 39, -2, 79, 4, 111, -2, 163, 3, 210, -2, 257, 3, 298, -4, 321, 3, 341, 1, 341, 21, 342, 39, 343, 63, 341, 87, 342, 115, 339, 140, 343, 163, 339, 187, 343, 199, 318, 202, 286, 199, 261, 203, 234, 202, 196, 202, 165, 199, 131, 203, 100, 199, 62, 202, 42, 199, 18, 201, 0, 200 )
 default_color = Color( 0.152941, 0.129412, 0.14902, 1 )
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="background/Line2D"]
+autoplay = "default"
+anims/RESET = SubResource( 5 )
+anims/default = SubResource( 6 )
+
 [node name="BoundingBox" type="Node2D" parent="background"]
 
 [node name="left" type="StaticBody2D" parent="background/BoundingBox"]
-position = Vector2( 0, 100 )
+position = Vector2( -2, 100 )
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="background/BoundingBox/left"]
 shape = SubResource( 1 )
 
 [node name="right" type="StaticBody2D" parent="background/BoundingBox"]
-position = Vector2( 341, 101 )
+position = Vector2( 343, 101 )
 collision_mask = 0
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="background/BoundingBox/right"]
 shape = SubResource( 2 )
 
 [node name="up" type="StaticBody2D" parent="background/BoundingBox"]
-position = Vector2( 170, 0 )
+position = Vector2( 170, -2 )
 collision_mask = 0
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="background/BoundingBox/up"]
 shape = SubResource( 3 )
 
 [node name="down" type="StaticBody2D" parent="background/BoundingBox"]
-position = Vector2( 170, 200 )
+position = Vector2( 170, 202 )
 collision_mask = 0
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="background/BoundingBox/down"]

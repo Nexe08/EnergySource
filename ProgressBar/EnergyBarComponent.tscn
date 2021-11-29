@@ -1,15 +1,67 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ProgressBar/ProgressBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ProgressBar/script/energy_bar_component.gd" type="Script" id=2]
 
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.574, 1.119 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EnergyBar:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.972, 1.06 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "default"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnergyBar:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0.778 ), Vector2( 1, 1.17 ), Vector2( 1, 1 ), Vector2( 1, 1.209 ) ]
+}
+
 [node name="EnergyBarComponent" type="Node2D"]
+scale = Vector2( 0.574, 1.119 )
 script = ExtResource( 2 )
 
 [node name="EnergyBar" parent="." instance=ExtResource( 1 )]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 333.0
-margin_bottom = 16.0
-rect_pivot_offset = Vector2( 163, 4 )
+anchor_right = 1.0
+margin_left = 24.0
+margin_top = 164.0
+margin_right = 572.0
+margin_bottom = 172.0
+rect_scale = Vector2( 0.972, 1.06 )
+rect_pivot_offset = Vector2( 273.526, 6.10631 )
 always_visible = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+anims/RESET = SubResource( 1 )
+anims/default = SubResource( 2 )
